@@ -1,3 +1,52 @@
+class RpsController  < UIViewController
+  attr_accessor :game
+  def game_ai=(ai)
+  end
+
+  def viewDidLoad
+    self.game = RpsGame.new
+    margin = 20
+
+    @winner = UILabel.new
+    @winner.font = UIFont.systemFontOfSize(30)
+    @winner.text = 'Winner:'
+    @winner.textAlignment = UITextAlignmentCenter
+    @winner.textColor = UIColor.whiteColor
+    @winner.backgroundColor = UIColor.clearColor
+    @winner.frame = [[margin, 100], [view.frame.size.width - margin * 2, 40]]
+    view.addSubview(@winner)
+
+
+    @rock = UIButton.buttonWithType(UIButtonTypeRoundedRect)
+    @rock.setTitle('Rock', forState:UIControlStateNormal)
+    @rock.setTitle('*Rock*', forState:UIControlStateSelected)
+    @rock.addTarget(self, action:'rockTapped', forControlEvents:UIControlEventTouchUpInside)
+    @rock.frame = [[margin, 160], [view.frame.size.width - margin * 2, 40]]
+    view.addSubview(@rock)
+
+    @computer = UILabel.new
+    @computer.font = UIFont.systemFontOfSize(30)
+    @computer.text = 'Their Move:'
+    @computer.textAlignment = UITextAlignmentCenter
+    @computer.textColor = UIColor.whiteColor
+    @computer.backgroundColor = UIColor.clearColor
+    @computer.frame = [[margin, 200], [view.frame.size.width - margin * 2, 40]]
+    view.addSubview(@computer)
+
+    @player = UILabel.new
+    @player.font = UIFont.systemFontOfSize(30)
+    @player.text = 'Your Move:'
+    @player.textAlignment = UITextAlignmentCenter
+    @player.textColor = UIColor.whiteColor
+    @player.backgroundColor = UIColor.clearColor
+    @player.frame = [[margin, 260], [view.frame.size.width - margin * 2, 40]]
+    view.addSubview(@player)
+
+  end
+  def rockTapped
+    @rock.selected = !@rock.selected?
+  end
+end
 class TimerController < UIViewController
   attr_reader :timer
 
