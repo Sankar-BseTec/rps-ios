@@ -17,9 +17,9 @@ describe "The RPS view controller" do
     computer = view('Their Move:')
     outcome = view('Winner:')
     tap 'Rock'
-    player.text.should == 'Rock'
-    computer.text.should == 'Paper'
-    outcome.text.should == 'Opponent'
+    player.text.should == 'Your Move: Rock'
+    computer.text.should == 'Their Move: Paper'
+    outcome.text.should == 'Winner: Opponent'
   end
 
 end
