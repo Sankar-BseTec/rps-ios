@@ -1,6 +1,6 @@
 describe "The RPS view controller" do
   tests RpsController
-  setup do
+  before do
     controller.game_ai = :deterministic_game
   end
   it "has a Rock label" do
