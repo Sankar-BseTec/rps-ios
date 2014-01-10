@@ -4,7 +4,7 @@ class RpsController  < UIViewController
   end
 
   def viewDidLoad
-    self.game = RpsGame.new
+    self.game = RpsGame.new(self)
     margin = 20
 
     @winner = UILabel.new
@@ -45,6 +45,18 @@ class RpsController  < UIViewController
   end
   def rockTapped
     @rock.selected = !@rock.selected?
+    @game.playersMove(:rock)
+
+  end
+
+  def playerThrew(sign)
+    @player.text = "Your Move: Rock"
+  end
+  def computerThrew(sign)
+    @computer.text = "Their Move: Paper"
+  end
+  def winner(participant)
+    @winner.text = "Winner: Opponent"
   end
 end
 class TimerController < UIViewController
