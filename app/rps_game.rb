@@ -13,4 +13,6 @@ class RpsGame
   def playedRock
     playersMove(:rock)
   end
+  def playedScissors
+  end
 end

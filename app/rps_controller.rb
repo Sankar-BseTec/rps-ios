@@ -24,6 +24,13 @@ class RpsController  < UIViewController
     @rock.frame = [[margin, 100], [view.frame.size.width - margin * 2, 40]]
     view.addSubview(@rock)
 
+    @scissors = UIButton.buttonWithType(UIButtonTypeRoundedRect)
+    @scissors.setTitle('Scissors', forState:UIControlStateNormal)
+    @scissors.addTarget(@game, action:'playedScissors', forControlEvents:UIControlEventTouchUpInside)
+    @scissors.frame = [[margin, 160], [view.frame.size.width - margin * 2, 40]]
+    view.addSubview(@scissors)
+
+
     @computer = UILabel.new
     @computer.font = UIFont.systemFontOfSize(30)
     @computer.text = 'Their Move:'
