@@ -53,6 +53,7 @@ class RpsController  < UIViewController
 
   SIGNS = {
     :rock => 'Rock',
+    :paper => 'Paper',
   }
 
   def playerThrew(sign)
@@ -60,7 +61,7 @@ class RpsController  < UIViewController
     @player.text = "Your Move: #{SIGNS[sign]}"
   end
   def computerThrew(sign)
-    @computer.text = "Their Move: Paper"
+    @computer.text = "Their Move: #{SIGNS[sign]}"
   end
   def outcome(outcome)
     @outcome.text = "Winner: Opponent"
