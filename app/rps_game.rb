@@ -22,4 +22,8 @@ class RpsGame
   def playedScissors
     playersMove(:scissors)
   end
+  def playedPaper
+    playersMove(:paper)
+  end
+
 end

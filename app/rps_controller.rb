@@ -24,6 +24,12 @@ class RpsController  < UIViewController
     @rock.frame = [[margin, 100], [view.frame.size.width - margin * 2, 40]]
     view.addSubview(@rock)
 
+    @paper = UIButton.buttonWithType(UIButtonTypeRoundedRect)
+    @paper.setTitle('Paper', forState:UIControlStateNormal)
+    @paper.addTarget(@game, action:'playedPaper', forControlEvents:UIControlEventTouchUpInside)
+    @paper.frame = [[margin, 130], [view.frame.size.width - margin * 2, 40]]
+    view.addSubview(@paper)
+
     @scissors = UIButton.buttonWithType(UIButtonTypeRoundedRect)
     @scissors.setTitle('Scissors', forState:UIControlStateNormal)
     @scissors.addTarget(@game, action:'playedScissors', forControlEvents:UIControlEventTouchUpInside)
@@ -53,11 +59,14 @@ class RpsController  < UIViewController
 
   SIGNS = {
     :rock => 'Rock',
+    :scissors => 'Scissors',
     :paper => 'Paper',
   }
 
   OUTCOMES = {
     :computer => 'Winner: Opponent',
+    :player => 'You Won!',
+    :tie => 'Game: Tie',
   }
 
   def playerThrew(sign)
