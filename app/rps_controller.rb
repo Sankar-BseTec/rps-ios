@@ -50,15 +50,14 @@ class RpsController  < UIViewController
     view.addSubview(@player)
 
   end
-  def rockTapped
-    @rock.selected = !@rock.selected?
-    @game.playersMove(:rock)
 
-  end
+  SIGNS = {
+    :rock => 'Rock',
+  }
 
   def playerThrew(sign)
-    @player.text = "Your Move: Rock"
     play.selected = true
+    @player.text = "Your Move: #{SIGNS[sign]}"
   end
   def computerThrew(sign)
     @computer.text = "Their Move: Paper"
