@@ -14,6 +14,9 @@ class RpsGame
     when :scissors then
       @handler.computerThrew(:scissors)
       @handler.outcome(:tie)
+    when :paper then
+      @handler.computerThrew(:rock)
+      @handler.outcome(:player)
     end
   end
   def playedRock

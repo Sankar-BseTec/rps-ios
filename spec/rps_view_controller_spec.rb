@@ -40,5 +40,15 @@ describe "The RPS view controller" do
     view('Paper').should.not == nil
   end
 
+  it "handles paper plays and losses" do
+    player = view('Your Move:')
+    computer = view('Their Move:')
+    outcome = view('Winner:')
+    tap 'Paper'
+    player.text.should == 'Your Move: Paper'
+    computer.text.should == 'Their Move: Rock'
+    outcome.text.should == 'You Won!'
+  end
+
 
 end
