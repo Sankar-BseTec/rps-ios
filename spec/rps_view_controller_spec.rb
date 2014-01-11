@@ -22,4 +22,8 @@ describe "The RPS view controller" do
     outcome.text.should == 'Winner: Opponent'
   end
 
+  it "has a Scissors label" do
+    view('Scissors').should.not == nil
+  end
+
 end
