@@ -7,14 +7,14 @@ class RpsController  < UIViewController
     self.game = RpsGame.new(self)
     margin = 20
 
-    @winner = UILabel.new
-    @winner.font = UIFont.systemFontOfSize(30)
-    @winner.text = 'Winner:'
-    @winner.textAlignment = UITextAlignmentCenter
-    @winner.textColor = UIColor.whiteColor
-    @winner.backgroundColor = UIColor.clearColor
-    @winner.frame = [[margin, 100], [view.frame.size.width - margin * 2, 40]]
-    view.addSubview(@winner)
+    @outcome = UILabel.new
+    @outcome.font = UIFont.systemFontOfSize(30)
+    @outcome.text = 'Winner:'
+    @outcome.textAlignment = UITextAlignmentCenter
+    @outcome.textColor = UIColor.whiteColor
+    @outcome.backgroundColor = UIColor.clearColor
+    @outcome.frame = [[margin, 40], [view.frame.size.width - margin * 2, 40]]
+    view.addSubview(@outcome)
 
 
     @rock = UIButton.buttonWithType(UIButtonTypeRoundedRect)
@@ -56,7 +56,7 @@ class RpsController  < UIViewController
     @computer.text = "Their Move: Paper"
   end
   def winner(participant)
-    @winner.text = "Winner: Opponent"
+    @outcome.text = "Winner: Opponent"
   end
 end
 class TimerController < UIViewController
