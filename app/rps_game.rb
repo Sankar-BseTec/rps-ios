@@ -17,5 +17,8 @@ class RpsGame
     playersMove(:rock)
   end
   def playedScissors
+    @handler.playerThrew(:scissors)
+    @handler.computerThrew(:scissors)
+    @handler.outcome(:tie)
   end
 end
