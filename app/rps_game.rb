@@ -10,4 +10,7 @@ class RpsGame
     @handler.computerThrew(:paper)
     @handler.outcome(:computer)
   end
+  def playedRock
+    playersMove(:rock)
+  end
 end

@@ -20,8 +20,8 @@ class RpsController  < UIViewController
     @rock = UIButton.buttonWithType(UIButtonTypeRoundedRect)
     @rock.setTitle('Rock', forState:UIControlStateNormal)
     @rock.setTitle('*Rock*', forState:UIControlStateSelected)
-    @rock.addTarget(self, action:'rockTapped', forControlEvents:UIControlEventTouchUpInside)
-    @rock.frame = [[margin, 160], [view.frame.size.width - margin * 2, 40]]
+    @rock.addTarget(@game, action:'playedRock', forControlEvents:UIControlEventTouchUpInside)
+    @rock.frame = [[margin, 100], [view.frame.size.width - margin * 2, 40]]
     view.addSubview(@rock)
 
     @computer = UILabel.new
@@ -51,6 +51,7 @@ class RpsController  < UIViewController
 
   def playerThrew(sign)
     @player.text = "Your Move: Rock"
+    play.selected = true
   end
   def computerThrew(sign)
     @computer.text = "Their Move: Paper"
