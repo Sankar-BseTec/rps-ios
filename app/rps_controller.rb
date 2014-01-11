@@ -70,6 +70,7 @@ class RpsController  < UIViewController
   }
 
   def playerThrew(sign)
+    play = instance_variable_get(:"@#{sign}")
     play.selected = true
     @player.text = "Your Move: #{SIGNS[sign]}"
   end
