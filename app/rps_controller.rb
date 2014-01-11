@@ -56,6 +56,10 @@ class RpsController  < UIViewController
     :paper => 'Paper',
   }
 
+  OUTCOMES = {
+    :computer => 'Winner: Opponent',
+  }
+
   def playerThrew(sign)
     play.selected = true
     @player.text = "Your Move: #{SIGNS[sign]}"
@@ -64,7 +68,7 @@ class RpsController  < UIViewController
     @computer.text = "Their Move: #{SIGNS[sign]}"
   end
   def outcome(outcome)
-    @outcome.text = "Winner: Opponent"
+    @outcome.text = OUTCOMES[outcome]
   end
 end
 class TimerController < UIViewController
