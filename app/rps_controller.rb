@@ -55,7 +55,7 @@ class RpsController  < UIViewController
   def computerThrew(sign)
     @computer.text = "Their Move: Paper"
   end
-  def winner(participant)
+  def outcome(outcome)
     @outcome.text = "Winner: Opponent"
   end
 end

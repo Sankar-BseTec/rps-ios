@@ -8,6 +8,6 @@ class RpsGame
   def playersMove(move)
     @handler.playerThrew(:rock)
     @handler.computerThrew(:paper)
-    @handler.winner(:computer)
+    @handler.outcome(:computer)
   end
 end

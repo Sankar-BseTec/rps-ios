@@ -12,7 +12,7 @@ describe "The RPS view controller" do
     controller.game.isValid.should == true
   end
 
-  it "updates both players" do
+  it "updates both players and the winner" do
     player = view('Your Move:')
     computer = view('Their Move:')
     outcome = view('Winner:')
