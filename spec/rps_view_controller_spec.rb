@@ -26,7 +26,7 @@ describe "The RPS view controller" do
     view('Scissors').should.not == nil
   end
 
-  it "handles multiple plays" do
+  it "handles scissors plays and ties" do
     player = view('Your Move:')
     computer = view('Their Move:')
     outcome = view('Winner:')
@@ -34,6 +34,10 @@ describe "The RPS view controller" do
     player.text.should == 'Your Move: Scissors'
     computer.text.should == 'Their Move: Scissors'
     outcome.text.should == 'Game: Tie'
+  end
+
+  it "has a Paper label" do
+    view('Paper').should.not == nil
   end
 
 
