@@ -26,4 +26,15 @@ describe "The RPS view controller" do
     view('Scissors').should.not == nil
   end
 
+  it "handles multiple plays" do
+    player = view('Your Move:')
+    computer = view('Their Move:')
+    outcome = view('Winner:')
+    tap 'Scissors'
+    player.text.should == 'Your Move: Scissors'
+    computer.text.should == 'Their Move: Scissors'
+    outcome.text.should == 'Game: Tie'
+  end
+
+
 end
