@@ -18,6 +18,7 @@ class RpsGame
       @handler.computerThrew(:rock)
       @handler.outcome(:player)
     end
+    return self
   end
   def playedRock
     playersMove(:rock)

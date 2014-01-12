@@ -50,5 +50,14 @@ describe "The RPS view controller" do
     outcome.text.should == 'You Won!'
   end
 
-
+  it 'can reset the game' do
+    player = view('Your Move:')
+    computer = view('Their Move:')
+    outcome = view('Winner:')
+    tap 'Paper'
+    tap 'New Game'
+    player.text.should == 'Your Move:'
+    computer.text.should == 'Their Move:'
+    outcome.text.should == 'Winner:'
+  end
 end

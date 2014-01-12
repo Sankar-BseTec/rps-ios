@@ -16,22 +16,23 @@ class RpsController  < UIViewController
     @outcome.frame = [[margin, 40], [view.frame.size.width - margin * 2, 40]]
     view.addSubview(@outcome)
 
-
     @rock = UIButton.buttonWithType(UIButtonTypeRoundedRect)
     @rock.setTitle('Rock', forState:UIControlStateNormal)
-    @rock.setTitle('*Rock*', forState:UIControlStateSelected)
+    @rock.setTitle('New Game', forState:UIControlStateSelected)
     @rock.addTarget(@game, action:'playedRock', forControlEvents:UIControlEventTouchUpInside)
     @rock.frame = [[margin, 100], [view.frame.size.width - margin * 2, 40]]
     view.addSubview(@rock)
 
     @paper = UIButton.buttonWithType(UIButtonTypeRoundedRect)
     @paper.setTitle('Paper', forState:UIControlStateNormal)
+    @paper.setTitle('New Game', forState:UIControlStateSelected)
     @paper.addTarget(@game, action:'playedPaper', forControlEvents:UIControlEventTouchUpInside)
     @paper.frame = [[margin, 130], [view.frame.size.width - margin * 2, 40]]
     view.addSubview(@paper)
 
     @scissors = UIButton.buttonWithType(UIButtonTypeRoundedRect)
     @scissors.setTitle('Scissors', forState:UIControlStateNormal)
+    @scissors.setTitle('New Game', forState:UIControlStateSelected)
     @scissors.addTarget(@game, action:'playedScissors', forControlEvents:UIControlEventTouchUpInside)
     @scissors.frame = [[margin, 160], [view.frame.size.width - margin * 2, 40]]
     view.addSubview(@scissors)
@@ -54,7 +55,6 @@ class RpsController  < UIViewController
     @player.backgroundColor = UIColor.clearColor
     @player.frame = [[margin, 260], [view.frame.size.width - margin * 2, 40]]
     view.addSubview(@player)
-
   end
 
   SIGNS = {
@@ -69,11 +69,24 @@ class RpsController  < UIViewController
     :tie => 'Game: Tie',
   }
 
+  def reset_game
+    self.game = RpsGame.new(self)
+    @player.text = "Your Move:"
+    @computer.text = "Their Move:"
+    @outcome.text = "Winner:"
+    true
+  end
+
   def playerThrew(sign)
     play = instance_variable_get(:"@#{sign}")
+    return begin
+             play.selected = false
+             reset_game
+    end if play.selected?
     play.selected = true
     @player.text = "Your Move: #{SIGNS[sign]}"
   end
+
   def computerThrew(sign)
     @computer.text = "Their Move: #{SIGNS[sign]}"
   end
@@ -81,6 +94,7 @@ class RpsController  < UIViewController
     @outcome.text = OUTCOMES[outcome]
   end
 end
+
 class TimerController < UIViewController
   attr_reader :timer
 
