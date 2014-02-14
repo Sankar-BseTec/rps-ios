@@ -19,8 +19,8 @@ class RpsGame
     @handler.playerThrew(move)
     case move
     when :rock then
-    @handler.computerThrew(:paper)
-    @handler.outcome(:computer)
+      @handler.computerThrew(:paper)
+      @handler.outcome(:computer)
     when :scissors then
       @handler.computerThrew(:scissors)
       @handler.outcome(:tie)
