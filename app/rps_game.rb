@@ -16,7 +16,6 @@ class RpsGame
     true
   end
   def playersMove(move)
-    @handler.playerThrew(move)
     case move
     when :rock then
       @handler.computerThrew(:paper)
@@ -28,6 +27,7 @@ class RpsGame
       @handler.computerThrew(:rock)
       @handler.outcome(:player)
     end
+    @handler.playerThrew(move)
     return self
   end
   def self.playedRock
