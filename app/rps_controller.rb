@@ -10,7 +10,7 @@ class RpsController  < UIViewController
 
     @outcome = UILabel.new
     @outcome.font = UIFont.systemFontOfSize(30)
-    @outcome.text = 'Winner:'
+    @outcome.text = ''
     @outcome.textAlignment = UITextAlignmentCenter
     @outcome.textColor = UIColor.whiteColor
     @outcome.backgroundColor = UIColor.clearColor
@@ -19,7 +19,7 @@ class RpsController  < UIViewController
 
     @rock = UIButton.buttonWithType(UIButtonTypeRoundedRect)
     @rock.setTitle('Rock', forState:UIControlStateNormal)
-    @rock.setTitle('New Game', forState:UIControlStateSelected)
+    @rock.setTitle('', forState:UIControlStateSelected)
     @rock.addTarget(RpsGame, action:'playedRock', forControlEvents:UIControlEventTouchUpInside)
     @rock.frame = [[margin, 100], [view.frame.size.width - margin * 2, 40]]
     view.addSubview(@rock)
@@ -33,7 +33,7 @@ class RpsController  < UIViewController
 
     @scissors = UIButton.buttonWithType(UIButtonTypeRoundedRect)
     @scissors.setTitle('Scissors', forState:UIControlStateNormal)
-    @scissors.setTitle('New Game', forState:UIControlStateSelected)
+    @scissors.setTitle('', forState:UIControlStateSelected)
     @scissors.addTarget(RpsGame, action:'playedScissors', forControlEvents:UIControlEventTouchUpInside)
     @scissors.frame = [[margin, 160], [view.frame.size.width - margin * 2, 40]]
     view.addSubview(@scissors)
@@ -41,7 +41,7 @@ class RpsController  < UIViewController
 
     @computer = UILabel.new
     @computer.font = UIFont.systemFontOfSize(30)
-    @computer.text = 'Their Move:'
+    @computer.text = ''
     @computer.textAlignment = UITextAlignmentCenter
     @computer.textColor = UIColor.whiteColor
     @computer.backgroundColor = UIColor.clearColor
@@ -50,7 +50,7 @@ class RpsController  < UIViewController
 
     @player = UILabel.new
     @player.font = UIFont.systemFontOfSize(30)
-    @player.text = 'Your Move:'
+    @player.text = ''
     @player.textAlignment = UITextAlignmentCenter
     @player.textColor = UIColor.whiteColor
     @player.backgroundColor = UIColor.clearColor
@@ -71,21 +71,28 @@ class RpsController  < UIViewController
   }
 
   def reset_game
-    @player.text = "Your Move:"
-    @computer.text = "Their Move:"
-    @outcome.text = "Winner:"
+    @player.text = ''
+    @computer.text = ''
+    @outcome.text = ''
     RpsGame.new_game
     true
   end
 
   def playerThrew(sign)
+    @played = false if @played.nil?
+    @played = !@played
     play = instance_variable_get(:"@#{sign}")
-    if play.selected?
-      play.selected = false
+    
+    if !@played
+      [@rock, @paper, @scissors].each do | option|
+        option.selected = false
+      end
       reset_game
       return
     end 
-    play.selected = true
+    [@rock, @paper, @scissors].each do | option|
+        option.selected = true
+      end
     @player.text = "Your Move: #{SIGNS[sign]}"
   end
 
