@@ -1,4 +1,14 @@
 class RpsGame
+  class << self
+    attr_accessor :handler
+    attr_accessor :current
+  end
+  def self.handler=(handler)
+    @handler = handler
+  end
+  def self.new_game
+    @current ||= RpsGame.new(@handler)
+  end
   def initialize(handler)
     @handler = handler
   end
@@ -20,14 +30,14 @@ class RpsGame
     end
     return self
   end
-  def playedRock
-    playersMove(:rock)
+  def self.playedRock
+    self.current.playersMove(:rock)
   end
-  def playedScissors
-    playersMove(:scissors)
+  def self.playedScissors
+    self.current.playersMove(:scissors)
   end
-  def playedPaper
-    playersMove(:paper)
+  def self.playedPaper
+    self.current.playersMove(:paper)
   end
 
 end

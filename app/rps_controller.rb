@@ -4,7 +4,8 @@ class RpsController  < UIViewController
   end
 
   def viewDidLoad
-    self.game = RpsGame.new(self)
+    RpsGame.handler=self
+    RpsGame.new_game
     margin = 20
 
     @outcome = UILabel.new
@@ -19,21 +20,21 @@ class RpsController  < UIViewController
     @rock = UIButton.buttonWithType(UIButtonTypeRoundedRect)
     @rock.setTitle('Rock', forState:UIControlStateNormal)
     @rock.setTitle('New Game', forState:UIControlStateSelected)
-    @rock.addTarget(@game, action:'playedRock', forControlEvents:UIControlEventTouchUpInside)
+    @rock.addTarget(RpsGame, action:'playedRock', forControlEvents:UIControlEventTouchUpInside)
     @rock.frame = [[margin, 100], [view.frame.size.width - margin * 2, 40]]
     view.addSubview(@rock)
 
     @paper = UIButton.buttonWithType(UIButtonTypeRoundedRect)
     @paper.setTitle('Paper', forState:UIControlStateNormal)
     @paper.setTitle('New Game', forState:UIControlStateSelected)
-    @paper.addTarget(@game, action:'playedPaper', forControlEvents:UIControlEventTouchUpInside)
+    @paper.addTarget(RpsGame, action:'playedPaper', forControlEvents:UIControlEventTouchUpInside)
     @paper.frame = [[margin, 130], [view.frame.size.width - margin * 2, 40]]
     view.addSubview(@paper)
 
     @scissors = UIButton.buttonWithType(UIButtonTypeRoundedRect)
     @scissors.setTitle('Scissors', forState:UIControlStateNormal)
     @scissors.setTitle('New Game', forState:UIControlStateSelected)
-    @scissors.addTarget(@game, action:'playedScissors', forControlEvents:UIControlEventTouchUpInside)
+    @scissors.addTarget(RpsGame, action:'playedScissors', forControlEvents:UIControlEventTouchUpInside)
     @scissors.frame = [[margin, 160], [view.frame.size.width - margin * 2, 40]]
     view.addSubview(@scissors)
 
@@ -70,19 +71,20 @@ class RpsController  < UIViewController
   }
 
   def reset_game
-    self.game = RpsGame.new(self)
     @player.text = "Your Move:"
     @computer.text = "Their Move:"
     @outcome.text = "Winner:"
+    RpsGame.new_game
     true
   end
 
   def playerThrew(sign)
     play = instance_variable_get(:"@#{sign}")
-    return begin
-             play.selected = false
-             reset_game
-    end if play.selected?
+    if play.selected?
+      play.selected = false
+      reset_game
+      return
+    end 
     play.selected = true
     @player.text = "Your Move: #{SIGNS[sign]}"
   end
